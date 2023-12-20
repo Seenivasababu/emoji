@@ -4,6 +4,7 @@ import { Inter } from "next/font/google";
 import { cookies } from "next/headers";
 
 import { TRPCReactProvider } from "~/trpc/react";
+import Navbar from "./Navbar";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -24,9 +25,14 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body className={`font-sans ${inter.variable}`}>
+        <body
+          className={`font-sans ${inter.variable} m-auto flex justify-center border-x border-slate-200 bg-black md:max-w-2xl`}
+        >
           <TRPCReactProvider cookies={cookies().toString()}>
-            {children}
+            <div className="block">
+              <Navbar />
+            </div>
+            <div>{children}</div>
           </TRPCReactProvider>
         </body>
       </html>
